@@ -1,0 +1,128 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Sliv",
+	"patterns": [
+
+		{
+			"include": "#constants"
+		},
+
+		{
+			"include": "#keywords"
+		},
+
+		{
+			"include": "#types"
+
+		},
+
+		{
+			"include": "#strings"
+		},
+
+		{
+			"include": "#methodcalls"
+		},
+
+		{
+			"include": "#variables"
+		},
+		
+		{
+			"include": "#numbers"
+		},
+
+		{
+			"include": "#comments"
+		}
+
+	],
+	"repository": {
+		"variables": {
+			"patterns": [{
+				"name": "variable",
+				"match": "(?<![0-9A-z_\\@])[A-z]+[A-z0-9_]*"
+			}]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "keyword",
+				"match": "(?<![0-9\\.])\\-?[0-9]+(\\.?[0-9]+)?"
+			}]
+		},
+		"methodcalls": {
+			"patterns": [{
+				"name": "entity.name.function",
+				"match": "(?:(?<![0-9A-z_])[A-z]+[A-z0-9_]*)(?=\\()"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control",
+				"match": "^(@type|@instance|@alias|@constructor|@model|@named)(?=[\\s\\b\\n])"
+			},
+
+			{
+				"name": "keyword.control",
+				"match": "(?<=[\\s]|[^A-z0-9_\\-])(@type|@instance|@alias|@constructor|@model|@named)(?=[\\s\\b\\n]|[^A-z0-9_\\-])"
+			},
+		
+			{
+				"name": "keyword.control",
+				"match": "(?<=[\\s]|[^A-z0-9_\\-])(\\#return|\\#if|\\#else|\\#elseif|\\#while|\\#for|\\#switch|\\#repeat|#generate)(?=[\\s\\b\\n]|[^A-z0-9_\\-])"
+			},
+
+			{
+				"name": "keyword.control",
+				"match": "^(\\#return|\\#if|\\#else|\\#elseif|\\#while|\\#for|\\#switch|\\#repeat|#generate)(?=[\\s\\b\\n]|[^A-z0-9_\\-])"
+			}]
+		},
+		"constants": {
+			"patterns": [{
+				"name": "keyword",
+				"match": "^(true|false|null|\\?)(?=[\\s\\b\\n])"
+			},
+			{
+				"name": "keyword",
+				"match": "(?<=[\\s]|[^A-z0-9_\\-])(true|false|null|\\?)(?=[\\s\\b\\n]|[^A-z0-9_\\-])"
+			}]
+		},
+		"types": {
+			"patterns": [{
+				"match": "\\[[^\\]]*\\]",
+				"name": "entity.name.type"
+			},{
+				"match": "(?<=\\[([A-z]+[A-z0-9_]*))\\[[^\\]]*\\]",
+				"name": "entity.name.type"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.sliv",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sliv",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment",
+			"patterns": [
+				{
+					"name": "comment",
+					"begin": "\\/\\*",
+					"end": "\\*\\/"
+				},
+				{
+					"name": "comment",
+					"begin": "//",
+					"end": "\n"
+				}
+			
+			]
+		}
+	},
+	"scopeName": "text.sliv"
+}

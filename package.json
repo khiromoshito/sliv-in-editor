@@ -1,0 +1,25 @@
+{
+    "name": "sliv-in-editor",
+    "displayName": "Sliv",
+    "description": "Official debugger and syntax formatter for Sliv",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.54.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sliv",
+            "aliases": ["Sliv", "sliv"],
+            "extensions": [".sliv"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sliv",
+            "scopeName": "text.sliv",
+            "path": "./syntaxes/sliv.tmLanguage.json"
+        }]
+    }
+}
